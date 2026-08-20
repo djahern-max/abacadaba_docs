@@ -1,0 +1,18 @@
+docker compose -f docker-compose.prod.yml cp \
+  backend/scripts/seed_asc606_construction_intro.sql \
+  db:/tmp/seed.sql
+
+
+  docker compose -f docker-compose.prod.yml exec db \
+  sh -c 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB"'
+
+
+
+  \i /tmp/seed.sql
+
+
+  COMMIT;
+
+
+
+  
